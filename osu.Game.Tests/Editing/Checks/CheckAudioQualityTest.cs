@@ -28,7 +28,7 @@ namespace osu.Game.Tests.Editing.Checks
             {
                 BeatmapInfo = new BeatmapInfo
                 {
-                    Metadata = new BeatmapMetadata { AudioFile = "abc123.jpg" }
+                    Metadata = new BeatmapMetadata { AudioFile = "abc123.mp3" }
                 }
             };
         }
