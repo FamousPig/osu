@@ -11,7 +11,6 @@ using osu.Game.Overlays;
 using osuTK;
 
 namespace osu.Game.Graphics.UserInterface
-
 {
     public partial class SectionHeader : CompositeDrawable
     {

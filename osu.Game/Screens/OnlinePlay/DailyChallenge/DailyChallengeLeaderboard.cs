@@ -144,6 +144,8 @@ namespace osu.Game.Screens.OnlinePlay.DailyChallenge
             {
                 var best = req.Scores.Select(s => s.CreateScoreInfo(scoreManager, rulesets, beatmap.Value.BeatmapInfo)).ToArray();
 
+                long? totalCount = req.TotalScores;
+
                 userBestScore.Value = req.UserScore;
                 var userBest = userBestScore.Value?.CreateScoreInfo(scoreManager, rulesets, beatmap.Value.BeatmapInfo);
 
@@ -196,6 +198,11 @@ namespace osu.Game.Screens.OnlinePlay.DailyChallenge
                         SelectedMods = { BindTarget = SelectedMods },
                         IsValidMod = IsValidMod,
                     });
+
+                    if (totalCount != null && userBest.Position != null)
+                        userBestHeader.SetText($"Personal Best (#{userBest.Position.Value:N0} of {totalCount.Value:N0})");
+                    else
+                        userBestHeader.SetText("Personal Best");
                 }
 
                 userBestHeader.FadeTo(userBest == null ? 0 : 1);
