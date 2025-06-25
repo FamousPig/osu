@@ -102,7 +102,7 @@ namespace osu.Game.Tests.Visual.DailyChallenge
         {
             var result = new IndexedMultiplayerScores();
 
-            for (int i = 0; i < scoreCount; ++i)
+            for (int i = 0; i < Math.Min(scoreCount, 50); ++i)
             {
                 result.Scores.Add(new MultiplayerScore
                 {
@@ -118,6 +118,8 @@ namespace osu.Game.Tests.Visual.DailyChallenge
                     Statistics = new Dictionary<HitResult, int>()
                 });
             }
+
+            result.TotalScores = scoreCount;
 
             if (returnUserBest)
             {
