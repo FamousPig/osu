@@ -11,10 +11,13 @@ using osu.Game.Overlays;
 using osuTK;
 
 namespace osu.Game.Graphics.UserInterface
+
 {
     public partial class SectionHeader : CompositeDrawable
     {
-        private readonly LocalisableString text;
+        private LocalisableString text;
+
+        private OsuTextFlowContainer? textFlow;
 
         public SectionHeader(LocalisableString text)
         {
@@ -24,6 +27,13 @@ namespace osu.Game.Graphics.UserInterface
 
             RelativeSizeAxes = Axes.X;
             AutoSizeAxes = Axes.Y;
+        }
+
+        public void SetText(LocalisableString text)
+        {
+            this.text = text;
+
+            if (textFlow != null) textFlow.Text = this.text;
         }
 
         [BackgroundDependencyLoader]
@@ -37,7 +47,7 @@ namespace osu.Game.Graphics.UserInterface
                 Spacing = new Vector2(2),
                 Children = new Drawable[]
                 {
-                    new OsuTextFlowContainer(cp => cp.Font = OsuFont.Default.With(size: 16, weight: FontWeight.SemiBold))
+                    textFlow = new OsuTextFlowContainer(cp => cp.Font = OsuFont.Default.With(size: 16, weight: FontWeight.SemiBold))
                     {
                         Text = text,
                         RelativeSizeAxes = Axes.X,
